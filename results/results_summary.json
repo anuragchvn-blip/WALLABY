@@ -1,0 +1,39 @@
+{
+  "n_galaxies": 9999,
+  "methods": {
+    "FP": 3140,
+    "SN Ia": 360,
+    "TF": 6056,
+    "Unknown": 443
+  },
+  "dist_min": 0.04940831009106557,
+  "dist_max": 650.4291550788021,
+  "v_pec_min": -3311.5502974542305,
+  "v_pec_max": 4278.950444099065,
+  "v_pec_mean": 935.0057243785034,
+  "v_pec_median": 485.62858717555264,
+  "n_quality": 6102,
+  "fail_reasons": {
+    "low_snr": 3202,
+    "galactic_plane": 4,
+    "unphysical": 0,
+    "outlier_distance": 89,
+    "outlier_velocity": 0
+  },
+  "n_zoa": 5709,
+  "linking_length": 0.2427875592892819,
+  "n_groups": 5646,
+  "max_group_size": 7,
+  "density_min": -0.7470223325865659,
+  "density_max": 0.29800173716132194,
+  "density_mean": 2.2337021380262065e-20,
+  "density_std": 0.014613928472508832,
+  "div_mean": -7.268520893139726e-19,
+  "div_std": 0.8792866048091245,
+  "curl_mean": 0.19203287836270005,
+  "pk_min": 7.115079226431175e-33,
+  "pk_max": 19499.014873798238,
+  "self_correlation": 0.9999999999999997,
+  "bias_mean": 0.0,
+  "viz_created": true
+}
