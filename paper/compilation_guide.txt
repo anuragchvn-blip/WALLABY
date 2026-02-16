@@ -1,0 +1,217 @@
+================================================================================
+COMPILATION GUIDE: Inferring the Gravitational Field from Galaxy Peculiar Velocities
+================================================================================
+
+DOCUMENT OVERVIEW
+-----------------
+- Main file: main.tex
+- Bibliography: references.bib
+- Target venues: The Astrophysical Journal, MNRAS, Physical Review D
+- Document class: revtex4-2 (APS style)
+- Estimated pages: 12-15 (two-column format)
+- Citations: 40+ references
+
+================================================================================
+REQUIRED LATEX PACKAGES
+================================================================================
+
+Core packages (usually included in standard TeX distributions):
+- amsmath, amssymb, amsthm  (mathematical typesetting)
+- graphicx                   (figure inclusion)
+- booktabs                   (professional tables)
+- algorithm, algorithmic     (pseudocode)
+- hyperref                   (hyperlinks)
+- natbib                     (citations)
+- subcaption                 (subfigures)
+- siunitx                    (SI units)
+- xcolor                     (colors)
+- bm                         (bold math)
+
+Special requirements:
+- revtex4-2                  (APS document class)
+  * Usually included with TeXLive and MiKTeX
+  * If missing: https://journals.aps.org/revtex
+
+================================================================================
+COMPILATION INSTRUCTIONS
+================================================================================
+
+OPTION 1: Standard LaTeX Compilation (Recommended)
+--------------------------------------------------
+
+Step 1: Compile LaTeX
+    pdflatex main.tex
+
+Step 2: Generate bibliography
+    bibtex main
+
+Step 3: Resolve references (run twice)
+    pdflatex main.tex
+    pdflatex main.tex
+
+Full command sequence (Windows PowerShell):
+    cd E:\WALLABY\paper
+    pdflatex main.tex
+    bibtex main
+    pdflatex main.tex
+    pdflatex main.tex
+
+Full command sequence (Linux/Mac):
+    cd /path/to/WALLABY/paper
+    pdflatex main.tex
+    bibtex main
+    pdflatex main.tex
+    pdflatex main.tex
+
+
+OPTION 2: Using latexmk (Automated)
+-----------------------------------
+
+latexmk handles all compilation passes automatically:
+
+    latexmk -pdf main.tex
+
+To clean auxiliary files afterward:
+    latexmk -c
+
+
+OPTION 3: Overleaf (Online)
+---------------------------
+
+1. Create new project on https://www.overleaf.com
+2. Upload main.tex and references.bib
+3. Set compiler to pdfLaTeX
+4. Click "Recompile"
+
+
+================================================================================
+EXPECTED OUTPUT
+================================================================================
+
+After successful compilation, you should have:
+
+- main.pdf        : Final compiled paper (~12-15 pages, two-column)
+- main.aux        : Auxiliary file for cross-references
+- main.bbl        : Processed bibliography
+- main.blg        : BibTeX log file
+- main.log        : LaTeX compilation log
+- main.out        : Hyperref bookmarks
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+PROBLEM: "File revtex4-2.cls not found"
+SOLUTION: Install the revtex package:
+  - TeXLive: tlmgr install revtex
+  - MiKTeX: Use MiKTeX Console to install revtex
+  - Or download from: https://journals.aps.org/revtex
+
+PROBLEM: "Citation undefined" warnings
+SOLUTION: Run bibtex and pdflatex twice more:
+    bibtex main
+    pdflatex main.tex
+    pdflatex main.tex
+
+PROBLEM: "Underfull/Overfull hbox" warnings
+SOLUTION: These are usually minor formatting issues. If severe:
+  - Add \sloppy in preamble for more flexible line breaking
+  - Manually hyphenate long technical terms
+
+PROBLEM: Missing symbols (e.g., \OmegaM not defined)
+SOLUTION: The custom command is defined in the preamble. Ensure you're
+using the complete main.tex file.
+
+PROBLEM: Bibliography entries not appearing
+SOLUTION: 
+  1. Check that references.bib is in same directory as main.tex
+  2. Verify bibentry keys match \cite{} commands exactly (case-sensitive)
+  3. Run bibtex and check main.blg for errors
+
+PROBLEM: "Package natbib Error"
+SOLUTION: Remove conflicting citation packages. natbib should be the
+only citation package loaded.
+
+
+================================================================================
+GENERATING FIGURES (if needed)
+================================================================================
+
+The paper references several figures that should be generated from the
+WALLABY pipeline. To create these:
+
+1. Density slice plot:
+    python E:\WALLABY\velocity_reconstruction\visualization\slices.py
+
+2. Attractor analysis visualization:
+    python E:\WALLABY\analyze_attractors.py
+
+3. Expected output files:
+    - results/density_slice.png
+    - results/velocity_field.png
+    - results/attractor_analysis.png
+
+To include figures, uncomment \includegraphics commands in main.tex
+and ensure image files are in the paper/ directory or adjust paths.
+
+
+================================================================================
+CUSTOMIZATION FOR DIFFERENT JOURNALS
+================================================================================
+
+For The Astrophysical Journal (ApJ):
+------------------------------------
+Replace document class with:
+    \documentclass[twocolumn]{aastex631}
+    
+Download aastex from: https://journals.aas.org/aastex-package-for-manuscript-preparation/
+
+
+For Monthly Notices of the Royal Astronomical Society (MNRAS):
+--------------------------------------------------------------
+Replace document class with:
+    \documentclass[fleqn,usenatbib]{mnras}
+    
+Download mnras.cls from: https://academic.oup.com/mnras/pages/General_Instructions
+
+
+For arXiv preprint:
+-------------------
+The current revtex4-2 format is suitable for arXiv submission.
+No changes needed.
+
+
+================================================================================
+FILE CHECKLIST FOR SUBMISSION
+================================================================================
+
+□ main.tex          - Main LaTeX source
+□ references.bib    - BibTeX bibliography  
+□ main.pdf          - Compiled PDF
+□ figures/          - Directory with any figure files
+□ README.txt        - This compilation guide
+
+
+================================================================================
+CONTACT AND SUPPORT
+================================================================================
+
+For questions about the paper content:
+    WALLABY Collaboration
+    https://wallaby-survey.org
+
+For LaTeX technical support:
+    TeX Stack Exchange: https://tex.stackexchange.com
+
+
+================================================================================
+VERSION HISTORY
+================================================================================
+
+v1.0 (2026-02-16): Initial release
+  - Complete 12-page paper with 40+ citations
+  - POTENT methodology with novel gravity-to-velocity formula
+  - Analysis of 9,999 CosmicFlows-4 galaxies
+  - Detection of 20 attractors including Great Attractor and Shapley
+
+================================================================================

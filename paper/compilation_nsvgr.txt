@@ -1,0 +1,72 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% NS-VGR Paper Compilation Guide
+% Author: Anurag Chavan
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+COMPILATION INSTRUCTIONS FOR nsvgr_paper.tex
+=============================================
+
+This document uses REVTeX 4.2 (Physical Review D style) for arXiv/journal submission.
+
+REQUIREMENTS
+------------
+- LaTeX distribution: TeXLive 2022+ or MiKTeX 2022+
+- REVTeX 4.2 package (included in most distributions)
+- BibTeX or biber for bibliography processing
+
+COMPILATION SEQUENCE
+--------------------
+Run the following commands in order:
+
+1. First LaTeX pass:
+   pdflatex nsvgr_paper.tex
+
+2. Bibliography processing:
+   bibtex nsvgr_paper
+
+3. Second LaTeX pass (resolve citations):
+   pdflatex nsvgr_paper.tex
+
+4. Third LaTeX pass (resolve cross-references):
+   pdflatex nsvgr_paper.tex
+
+ALTERNATIVE: One-line compilation (latexmk)
+-------------------------------------------
+latexmk -pdf nsvgr_paper.tex
+
+This automatically handles all compilation passes.
+
+OUTPUT FILES
+------------
+- nsvgr_paper.pdf - Final compiled paper
+- nsvgr_paper.aux - Auxiliary file for cross-references
+- nsvgr_paper.bbl - Processed bibliography
+- nsvgr_paper.blg - BibTeX log file
+- nsvgr_paper.log - LaTeX compilation log
+
+ARXIV SUBMISSION
+----------------
+For arXiv submission, upload:
+1. nsvgr_paper.tex (main source)
+2. references_nsvgr.bib (bibliography)
+3. Any figure files (if added)
+
+The arXiv will auto-compile using their LaTeX system.
+
+JOURNAL SUBMISSION
+------------------
+For Physical Review D or MNRAS:
+1. Change documentclass options as needed
+2. Follow journal-specific formatting guidelines
+3. Include cover letter addressing novelty of NS-VGR formula
+
+TROUBLESHOOTING
+---------------
+- "Missing package" errors: Install via tlmgr (TeXLive) or MiKTeX console
+- Citation warnings: Ensure bibtex ran successfully
+- Over-full boxes: Check figure/table widths
+
+CONTACT
+-------
+Author: Anurag Chavan
+Email: anuragchvn1@gmail.com

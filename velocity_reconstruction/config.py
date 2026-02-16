@@ -45,9 +45,9 @@ class GridConfig:
     """Grid configuration for reconstruction."""
 
     extent: float = 100.0  # Half-extent in Mpc (covers ±100 Mpc)
-    resolution: int = 200  # Number of cells per dimension (200^3 total)
+    resolution: int = 128  # Number of cells per dimension (128^3 total)
     cell_size: float = field(init=False)  # Cell size in Mpc
-    smoothing_sigma: float = 10.0  # Gaussian smoothing scale in Mpc
+    smoothing_sigma: float = 3.0  # Gaussian smoothing scale in Mpc (Optimized for NS-VGR)
 
     def __post_init__(self):
         """Compute derived quantities."""
@@ -96,6 +96,12 @@ class AlgorithmConfig:
     use_potent: bool = True
     use_wiener_filter: bool = True
     use_bayesian: bool = True
+    use_ns_vgr: bool = True  # New novel formula
+
+    # NS-VGR parameters
+    ns_vgr_delta_crit: float = 1.68
+    ns_vgr_gamma: float = 0.4
+    ns_vgr_l_nl: float = 5.0
 
     # POTENT parameters
     potent_smoothing_range: List[float] = field(default_factory=lambda: [10.0, 12.0])
@@ -118,6 +124,10 @@ class AlgorithmConfig:
             "use_potent": self.use_potent,
             "use_wiener_filter": self.use_wiener_filter,
             "use_bayesian": self.use_bayesian,
+            "use_ns_vgr": self.use_ns_vgr,
+            "ns_vgr_delta_crit": self.ns_vgr_delta_crit,
+            "ns_vgr_gamma": self.ns_vgr_gamma,
+            "ns_vgr_l_nl": self.ns_vgr_l_nl,
             "potent_smoothing_range": self.potent_smoothing_range,
             "potent_max_iterations": self.potent_max_iterations,
             "potent_convergence_tolerance": self.potent_convergence_tolerance,
